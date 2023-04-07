@@ -1,4 +1,4 @@
-# KLineChartView
+# KLineViewMaster
 
 Android仿IQ Option K线图实现（包含MA,BOLL,MACD,KDJ,RSI,VOL指标）
 
