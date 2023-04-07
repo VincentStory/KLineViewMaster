@@ -104,10 +104,10 @@ public class MainDraw implements IChartDraw<ICandle> {
     }
 
     @Override
-    public void drawTranslated(@Nullable ICandle lastPoint, @NonNull ICandle curPoint, float lastX, float curX, @NonNull Canvas canvas, @NonNull BaseKLineChartView view, int position) {
+    public void drawTranslated(@Nullable ICandle lastPoint, @NonNull ICandle curPoint, float lastX, float curX, @NonNull Canvas canvas, @NonNull BaseKLineChartView view, int position,boolean isEnd) {
         switch (klineType) {
             case RANG_TYPE:
-                view.drawMainLine(canvas, mLinePaint, lastX, lastPoint.getClosePrice(), curX, curPoint.getClosePrice());
+                view.drawMainLine(canvas, mLinePaint, lastX, lastPoint.getClosePrice(), curX, curPoint.getClosePrice(),isEnd);
 
                 view.drawMainMinuteLine(canvas, paint, lastX, lastPoint.getClosePrice(), curX, curPoint.getClosePrice());
                 if (status == Status.MA) {
@@ -117,15 +117,15 @@ public class MainDraw implements IChartDraw<ICandle> {
 //                    }
                     //画ma5
                     if (lastPoint.getMA5Price() != 0) {
-                        view.drawMainLine(canvas, ma5Paint, lastX, lastPoint.getMA5Price(), curX, curPoint.getMA5Price());
+                        view.drawMainLine(canvas, ma5Paint, lastX, lastPoint.getMA5Price(), curX, curPoint.getMA5Price(),isEnd);
                     }
 //                    //画ma10
                     if (lastPoint.getMA10Price() != 0) {
-                        view.drawMainLine(canvas, ma10Paint, lastX, lastPoint.getMA10Price(), curX, curPoint.getMA10Price());
+                        view.drawMainLine(canvas, ma10Paint, lastX, lastPoint.getMA10Price(), curX, curPoint.getMA10Price(),isEnd);
                     }
 //                    //画ma30
                     if (lastPoint.getMA30Price() != 0) {
-                        view.drawMainLine(canvas, ma30Paint, lastX, lastPoint.getMA30Price(), curX, curPoint.getMA30Price());
+                        view.drawMainLine(canvas, ma30Paint, lastX, lastPoint.getMA30Price(), curX, curPoint.getMA30Price(),isEnd);
                     }
                 } else if (status == Status.BOLL) {
                     //画boll
@@ -133,18 +133,18 @@ public class MainDraw implements IChartDraw<ICandle> {
 //                        view.drawMainLine(canvas, ma10Paint, lastX, lastPoint.getMb(), curX, curPoint.getMb());
 //                    }
                     if (lastPoint.getUp() != 0) {
-                        view.drawMainLine(canvas, ma5Paint, lastX, lastPoint.getUp(), curX, curPoint.getUp());
+                        view.drawMainLine(canvas, ma5Paint, lastX, lastPoint.getUp(), curX, curPoint.getUp(),isEnd);
                     }
                     if (lastPoint.getMb() != 0) {
-                        view.drawMainLine(canvas, ma10Paint, lastX, lastPoint.getMb(), curX, curPoint.getMb());
+                        view.drawMainLine(canvas, ma10Paint, lastX, lastPoint.getMb(), curX, curPoint.getMb(),isEnd);
                     }
                     if (lastPoint.getDn() != 0) {
-                        view.drawMainLine(canvas, ma30Paint, lastX, lastPoint.getDn(), curX, curPoint.getDn());
+                        view.drawMainLine(canvas, ma30Paint, lastX, lastPoint.getDn(), curX, curPoint.getDn(),isEnd);
                     }
                 }
                 break;
             case LINE_TYPE:
-                view.drawMainLine(canvas, mLinePaint, lastX, lastPoint.getClosePrice(), curX, curPoint.getClosePrice());
+                view.drawMainLine(canvas, mLinePaint, lastX, lastPoint.getClosePrice(), curX, curPoint.getClosePrice(),isEnd);
 //            view.drawMainMinuteLine(canvas, paint, lastX, lastPoint.getClosePrice(), curX, curPoint.getClosePrice());
                 if (status == Status.MA) {
                     //画ma60
@@ -153,27 +153,27 @@ public class MainDraw implements IChartDraw<ICandle> {
 //                    }
                     //画ma5
                     if (lastPoint.getMA5Price() != 0) {
-                        view.drawMainLine(canvas, ma5Paint, lastX, lastPoint.getMA5Price(), curX, curPoint.getMA5Price());
+                        view.drawMainLine(canvas, ma5Paint, lastX, lastPoint.getMA5Price(), curX, curPoint.getMA5Price(),isEnd);
                     }
 //                    //画ma10
                     if (lastPoint.getMA10Price() != 0) {
-                        view.drawMainLine(canvas, ma10Paint, lastX, lastPoint.getMA10Price(), curX, curPoint.getMA10Price());
+                        view.drawMainLine(canvas, ma10Paint, lastX, lastPoint.getMA10Price(), curX, curPoint.getMA10Price(),isEnd);
                     }
 //                    //画ma30
                     if (lastPoint.getMA30Price() != 0) {
-                        view.drawMainLine(canvas, ma30Paint, lastX, lastPoint.getMA30Price(), curX, curPoint.getMA30Price());
+                        view.drawMainLine(canvas, ma30Paint, lastX, lastPoint.getMA30Price(), curX, curPoint.getMA30Price(),isEnd);
                     }
                 } else if (status == Status.BOLL) {
                     //画boll
 
                     if (lastPoint.getUp() != 0) {
-                        view.drawMainLine(canvas, ma5Paint, lastX, lastPoint.getUp(), curX, curPoint.getUp());
+                        view.drawMainLine(canvas, ma5Paint, lastX, lastPoint.getUp(), curX, curPoint.getUp(),isEnd);
                     }
                     if (lastPoint.getMb() != 0) {
-                        view.drawMainLine(canvas, ma10Paint, lastX, lastPoint.getMb(), curX, curPoint.getMb());
+                        view.drawMainLine(canvas, ma10Paint, lastX, lastPoint.getMb(), curX, curPoint.getMb(),isEnd);
                     }
                     if (lastPoint.getDn() != 0) {
-                        view.drawMainLine(canvas, ma30Paint, lastX, lastPoint.getDn(), curX, curPoint.getDn());
+                        view.drawMainLine(canvas, ma30Paint, lastX, lastPoint.getDn(), curX, curPoint.getDn(),isEnd);
                     }
                 }
                 break;
@@ -182,26 +182,26 @@ public class MainDraw implements IChartDraw<ICandle> {
                 if (status == Status.MA) {
 //                    //画ma5
                     if (lastPoint.getMA5Price() != 0) {
-                        view.drawMainLine(canvas, ma5Paint, lastX, lastPoint.getMA5Price(), curX, curPoint.getMA5Price());
+                        view.drawMainLine(canvas, ma5Paint, lastX, lastPoint.getMA5Price(), curX, curPoint.getMA5Price(),isEnd);
                     }
 //                    //画ma10
                     if (lastPoint.getMA10Price() != 0) {
-                        view.drawMainLine(canvas, ma10Paint, lastX, lastPoint.getMA10Price(), curX, curPoint.getMA10Price());
+                        view.drawMainLine(canvas, ma10Paint, lastX, lastPoint.getMA10Price(), curX, curPoint.getMA10Price(),isEnd);
                     }
 //                    //画ma30
                     if (lastPoint.getMA30Price() != 0) {
-                        view.drawMainLine(canvas, ma30Paint, lastX, lastPoint.getMA30Price(), curX, curPoint.getMA30Price());
+                        view.drawMainLine(canvas, ma30Paint, lastX, lastPoint.getMA30Price(), curX, curPoint.getMA30Price(),isEnd);
                     }
                 } else if (status == Status.BOLL) {
                     //画boll
                     if (lastPoint.getUp() != 0) {
-                        view.drawMainLine(canvas, ma5Paint, lastX, lastPoint.getUp(), curX, curPoint.getUp());
+                        view.drawMainLine(canvas, ma5Paint, lastX, lastPoint.getUp(), curX, curPoint.getUp(),isEnd);
                     }
                     if (lastPoint.getMb() != 0) {
-                        view.drawMainLine(canvas, ma10Paint, lastX, lastPoint.getMb(), curX, curPoint.getMb());
+                        view.drawMainLine(canvas, ma10Paint, lastX, lastPoint.getMb(), curX, curPoint.getMb(),isEnd);
                     }
                     if (lastPoint.getDn() != 0) {
-                        view.drawMainLine(canvas, ma30Paint, lastX, lastPoint.getDn(), curX, curPoint.getDn());
+                        view.drawMainLine(canvas, ma30Paint, lastX, lastPoint.getDn(), curX, curPoint.getDn(),isEnd);
                     }
                 }
                 break;
@@ -377,9 +377,9 @@ public class MainDraw implements IChartDraw<ICandle> {
         ICandle point = (ICandle) view.getItem(index);
         List<String> strings = new ArrayList<>();
         strings.add(view.getAdapter().getDate(index));
-        strings.add("高:" +   getValueFormatter().format(point.getHighPrice(), mDigit));
+        strings.add("高:" + getValueFormatter().format(point.getHighPrice(), mDigit));
         strings.add("开:" + getValueFormatter().format(point.getOpenPrice(), mDigit));
-        strings.add("低:" +   getValueFormatter().format(point.getLowPrice(), mDigit));
+        strings.add("低:" + getValueFormatter().format(point.getLowPrice(), mDigit));
         strings.add("收:" + getValueFormatter().format(point.getClosePrice(), mDigit));
 
         for (String s : strings) {

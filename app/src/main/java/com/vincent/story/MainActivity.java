@@ -2,7 +2,10 @@ package com.vincent.story;
 
 
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.support.annotation.LayoutRes;
+import android.support.annotation.MainThread;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
@@ -13,6 +16,7 @@ import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.TextView;
 
+import com.github.fujianlian.klinechart.BaseKLineChartView;
 import com.github.fujianlian.klinechart.KLineChartAdapter;
 import com.github.fujianlian.klinechart.KLineChartView;
 import com.github.fujianlian.klinechart.KLineEntity;
@@ -24,6 +28,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
+import java.util.logging.Logger;
 
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -80,6 +85,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         setChildDraw(Constants.CLEAR);
+        setKlineType(LINE_TYPE);
 
         refreshData();
 
@@ -93,6 +99,7 @@ public class MainActivity extends AppCompatActivity {
         mBinder.unbind();
     }
 
+    int mSeconds=1000;
     /**
      * 每秒刷新一次数据 ，每5秒新增一条数据
      */
@@ -105,18 +112,23 @@ public class MainActivity extends AppCompatActivity {
                 }
                 KLineEntity kLineEntity = newDatas.get(newDatas.size() - mSecond - RANG_ITEM - 1);
                 mSecond++;
-                if (mSecond % 5 == 0) {
-                    datas.add(datas.size() - RANG_ITEM, kLineEntity);
-                    adapter.addData(kLineEntity, 0, "2");
-                } else {
-                    adapter.replaceData(kLineEntity, 0, "2");
-                    datas.set(datas.size() - RANG_ITEM - 1, kLineEntity);
-                }
-//                adapter.addFooterData(datas);
-                adapter.notifyDataSetChanged();
+//                if (mSecond % 5 == 0) {
+//                    datas.add(datas.size() - RANG_ITEM, kLineEntity);
+//                    adapter.addData(kLineEntity, 0, "2");
+//                } else {
+//                    adapter.replaceData(kLineEntity, 0, "2");
+//                    datas.set(datas.size() - RANG_ITEM - 1, kLineEntity);
+//                }
+                datas.add(datas.size() - RANG_ITEM, kLineEntity);
+                adapter.addData(kLineEntity, 0, "2");
+                new Handler(Looper.getMainLooper()).post(() -> {
+                    kLineChartView.setmLineAnimationDuration(mSeconds);
+                    kLineChartView.startLineAnimation();
+                    kLineChartView.postDelayed(() -> adapter.notifyDataSetChanged(), mSeconds);
 
+                });
             }
-        }, 1000, 1000);
+        }, mSeconds, mSeconds);
     }
 
 

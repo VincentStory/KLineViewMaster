@@ -24,7 +24,7 @@ public interface IChartDraw<T> {
      * @param lastX     上一个点的x坐标
      * @param curX      当前点的X坐标
      */
-    void drawTranslated(@Nullable T lastPoint, @NonNull T curPoint, float lastX, float curX, @NonNull Canvas canvas, @NonNull BaseKLineChartView view, int position);
+    void drawTranslated(@Nullable T lastPoint, @NonNull T curPoint, float lastX, float curX, @NonNull Canvas canvas, @NonNull BaseKLineChartView view, int position,boolean isEnd);
 
     /**
      * @param canvas

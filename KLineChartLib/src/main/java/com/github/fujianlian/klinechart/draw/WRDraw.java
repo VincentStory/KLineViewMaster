@@ -24,7 +24,7 @@ public class WRDraw implements IChartDraw<IWR> {
 
     @Override
     public void drawTranslated(@Nullable IWR lastPoint, @NonNull IWR curPoint, float lastX,
-                               float curX, @NonNull Canvas canvas, @NonNull BaseKLineChartView view, int position) {
+                               float curX, @NonNull Canvas canvas, @NonNull BaseKLineChartView view, int position, boolean isEnd) {
         if (lastPoint.getR() != -10) {
             view.drawChildLine(canvas, mRPaint, lastX, lastPoint.getR(), curX, curPoint.getR());
         }

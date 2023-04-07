@@ -36,7 +36,7 @@ public class VolumeDraw implements IChartDraw<IVolume> {
     @Override
     public void drawTranslated(
             @Nullable IVolume lastPoint, @NonNull IVolume curPoint, float lastX, float curX,
-            @NonNull Canvas canvas, @NonNull BaseKLineChartView view, int position) {
+            @NonNull Canvas canvas, @NonNull BaseKLineChartView view, int position, boolean isEnd) {
 
         drawHistogram(canvas, curPoint, lastPoint, curX, view, position);
         if (lastPoint.getMA5Volume() != 0f) {

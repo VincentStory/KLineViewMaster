@@ -29,7 +29,7 @@ public class KDJDraw implements IChartDraw<IKDJ> {
 
     @Override
     public void drawTranslated(@Nullable IKDJ lastPoint, @NonNull IKDJ curPoint,
-                               float lastX, float curX, @NonNull Canvas canvas, @NonNull BaseKLineChartView view, int position) {
+                               float lastX, float curX, @NonNull Canvas canvas, @NonNull BaseKLineChartView view, int position,boolean isEnd) {
             if (lastPoint.getK() != 0) {
                 view.drawChildLine(canvas, mKPaint, lastX, lastPoint.getK(), curX, curPoint.getK());
             }

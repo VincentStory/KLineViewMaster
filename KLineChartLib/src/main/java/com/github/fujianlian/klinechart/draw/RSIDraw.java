@@ -27,7 +27,7 @@ public class RSIDraw implements IChartDraw<IRSI> {
 
     @Override
     public void drawTranslated(@Nullable IRSI lastPoint, @NonNull IRSI curPoint,
-                               float lastX, float curX, @NonNull Canvas canvas, @NonNull BaseKLineChartView view, int position) {
+                               float lastX, float curX, @NonNull Canvas canvas, @NonNull BaseKLineChartView view, int position,boolean isEnd) {
         if (lastPoint.getRsi() != 0) {
             view.drawChildLine(canvas, mRSI1Paint, lastX, lastPoint.getRsi(), curX, curPoint.getRsi());
         }

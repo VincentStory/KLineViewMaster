@@ -41,7 +41,7 @@ public class MACDDraw implements IChartDraw<IMACD> {
 
     @Override
     public void drawTranslated(@Nullable IMACD lastPoint, @NonNull IMACD curPoint,
-                               float lastX, float curX, @NonNull Canvas canvas, @NonNull BaseKLineChartView view, int position) {
+                               float lastX, float curX, @NonNull Canvas canvas, @NonNull BaseKLineChartView view, int position,boolean isEnd) {
             drawMACD(canvas, view, curX, curPoint.getMacd());
             view.drawChildLine(canvas, mDIFPaint, lastX, lastPoint.getDea(), curX, curPoint.getDea());
             view.drawChildLine(canvas, mDEAPaint, lastX, lastPoint.getDif(), curX, curPoint.getDif());
