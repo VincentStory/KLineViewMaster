@@ -495,7 +495,7 @@ public abstract class BaseKLineChartView extends ScrollAndScaleView {
         canvas.save();
         if (isFullScreen()) {
             Log.i("mTranslateX==", mTranslateX + "--mScaleX==" + mScaleX );
-            canvas.translate(mTranslateX-500 * mScaleX, 0);
+            canvas.translate(mTranslateX * mScaleX, 0);
         } else {
             canvas.translate(0, 0);
         }

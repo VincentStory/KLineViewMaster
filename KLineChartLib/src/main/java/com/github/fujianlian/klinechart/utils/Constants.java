@@ -38,7 +38,7 @@ public class Constants {
     public static final String RANG_TYPE = "RANG_TYPE";
     public static final String LINE_TYPE = "LINE_TYPE";
     public static final String CANDLE_TYPE = "CANDLE_TYPE";
-    public static final int RANG_ITEM = 0; //添加假数据实现k线左移
+    public static final int RANG_ITEM = 30; //添加假数据实现k线左移
 
     //"1min", "5min", "15min", "30min", "60min", "1day", "1week", "1mon"};
     public static final String FIVE_SECOND = "5s";
