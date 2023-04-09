@@ -122,7 +122,7 @@ public class MainActivity extends AppCompatActivity {
                 datas.add(datas.size() - RANG_ITEM, kLineEntity);
                 adapter.addData(kLineEntity, 0, "2");
                 new Handler(Looper.getMainLooper()).post(() -> {
-                    kLineChartView.setmLineAnimationDuration(mSeconds);
+//                    kLineChartView.setmLineAnimationDuration(mSeconds);
                     kLineChartView.startLineAnimation();
                     kLineChartView.postDelayed(() -> adapter.notifyDataSetChanged(), mSeconds);
 
