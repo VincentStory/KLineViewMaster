@@ -495,6 +495,7 @@ public abstract class BaseKLineChartView extends ScrollAndScaleView {
         canvas.save();
         if (isFullScreen()) {
             Log.i("mTranslateX==", mTranslateX + "--mScaleX==" + mScaleX);
+            //每次刷新左移
             canvas.translate(mTranslateX * mScaleX, 0);
         } else {
             canvas.translate(0, 0);
@@ -1028,7 +1029,7 @@ public abstract class BaseKLineChartView extends ScrollAndScaleView {
         currentY = oldY + rang;
         Log.i("currentY==", currentY + "--lastY==" + lastY);
 
-        if (Math.abs(Math.abs(currentY) - Math.abs(lastY)) > 2 && lastY != 0 && lastNearY != lastY) {
+        if (Math.abs(Math.abs(currentY) - Math.abs(lastY)) > 1 && lastY != 0 && lastNearY != lastY) {
             currentY = lastY;
         }
         if (translateXtoX(getX(mAdapter.getCount() - 1)) < getChartWidth() / 2) {
@@ -1267,6 +1268,9 @@ public abstract class BaseKLineChartView extends ScrollAndScaleView {
         return getValueFormatter().format(value, mDigit);
     }
 
+    //上次刷新的总数量
+    int oldItemCount = 0;
+
     /**
      * 重新计算并刷新线条
      */
@@ -1277,7 +1281,11 @@ public abstract class BaseKLineChartView extends ScrollAndScaleView {
         }
         if (mItemCount != 0) {
             Log.i("mItemCount1==", mItemCount + "");
-            mDataLen = (mItemCount - 1) * mPointWidth;
+            //每5条数据左移一次
+            if (mItemCount - oldItemCount >= 5) {
+                oldItemCount = mItemCount;
+            }
+            mDataLen = (oldItemCount - 1) * mPointWidth;
             checkAndFixScrollX();
             Log.i("mScrollX==", mScrollX + "");
             setTranslateXFromScrollX(mScrollX);
