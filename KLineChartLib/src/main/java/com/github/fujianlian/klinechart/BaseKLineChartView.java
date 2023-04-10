@@ -1028,8 +1028,8 @@ public abstract class BaseKLineChartView extends ScrollAndScaleView {
         currentY = oldY + rang;
         Log.i("currentY==", currentY + "--lastY==" + lastY);
 
-        if (Math.abs(Math.abs(currentY) - Math.abs(lastY)) > 10 && lastY != 0) {
-            currentY = lastY ;
+        if (Math.abs(Math.abs(currentY) - Math.abs(lastY)) > 2 && lastY != 0 && lastNearY != lastY) {
+            currentY = lastY;
         }
         if (translateXtoX(getX(mAdapter.getCount() - 1)) < getChartWidth() / 2) {
             x = 1;
@@ -1065,8 +1065,8 @@ public abstract class BaseKLineChartView extends ScrollAndScaleView {
         //画实时线的横线
         canvas.drawLine(0, currentY, x, currentY, mSelectedXLinePaint);
         Log.i("Rang_count==", Math.abs(Math.abs(currentY) - Math.abs(lastY)) + "");
-        lastY = currentY;
         lastNearY = lastY;
+        lastY = currentY;
         oldY = getMainY(lastPoint.getClosePrice());
 
 
