@@ -339,10 +339,18 @@ public abstract class BaseKLineChartView extends ScrollAndScaleView {
         drawText(canvas);
         drawValue(canvas, isLongPress ? mSelectedIndex : mStopIndex);
         drawCircle(canvas);
+        drawCurrentPointCircle(canvas);
 //        drawMaxAndMin(canvas);
         canvas.restore();
 
 
+    }
+
+    private void drawCurrentPointCircle(Canvas canvas) {
+        canvas.save();
+        canvas.scale(1, 1);
+        canvas.drawCircle(currentX * mScaleX, currentY, 10, mGreenPaint);
+        canvas.restore();
     }
 
 
@@ -1477,6 +1485,8 @@ public abstract class BaseKLineChartView extends ScrollAndScaleView {
         return indexOfTranslateX(translateX, 0, mItemCount - 1);
     }
 
+    //当前x坐标
+    float currentX = 0;
 
     /**
      * 在主区域画线
@@ -1493,9 +1503,10 @@ public abstract class BaseKLineChartView extends ScrollAndScaleView {
         float rangX = stopX - startX;
         float rangY = getMainY(stopValue) - getMainY(startValue);
 
-        if (isEnd)
-            canvas.drawLine(startX, getMainY(startValue), startX + mLinePercent * rangX, getMainY(startValue) + mLinePercent * rangY, paint);
-        else canvas.drawLine(startX, getMainY(startValue), stopX, getMainY(stopValue), paint);
+        if (isEnd) {
+            currentX = startX + mLinePercent * rangX;
+            canvas.drawLine(startX, getMainY(startValue), currentX, getMainY(startValue) + mLinePercent * rangY, paint);
+        } else canvas.drawLine(startX, getMainY(startValue), stopX, getMainY(stopValue), paint);
 //         canvas.drawLine(startX, getMainY(startValue), stopX, getMainY(stopValue), paint);
 
         Log.i("stopX--", isEnd + "");
